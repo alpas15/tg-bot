@@ -23,7 +23,7 @@ func (myBot *Bot) Start() {
 		if update.Message == nil {
 			continue
 		}
-		myBot.Action(update)
+		go myBot.Action(update)
 		log.Printf("[%s] %v %s", update.Message.From.UserName, update.Message.Chat.ID, update.Message.Text)
 	}
 }
