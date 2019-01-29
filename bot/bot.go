@@ -29,14 +29,12 @@ func (myBot *Bot) Start() {
 }
 
 func (myBot *Bot) Action(update tgbotapi.Update) {
-	var msg interface{}
+	msg := myBot.Handlers["default"](update)
 	command := strings.TrimLeft(update.Message.Text, "/")
 	if strings.Contains(command, " ") {
 		commandMap := strings.Split(command, " ")
 		if len(commandMap) > 0 && len(commandMap[0]) > 0 {
 			command = commandMap[0]
-		} else {
-			msg = myBot.Handlers["default"](update)
 		}
 	}
 	if len(command) > 0 {
